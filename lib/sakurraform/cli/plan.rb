@@ -15,7 +15,12 @@ module SakurraForm
 
     desc 'apply', ''
     def apply
-      update_chain
+      run_state = SakurraForm::RunState.new
+
+      network = Fog::Network::SakuraCloud.new
+      run_state.mapping['network'].each_pair do |name, id|
+        network.routers.create(:name => id, :networkmasklen => 28)
+      end
     end
   end
 end

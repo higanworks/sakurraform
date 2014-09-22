@@ -1,5 +1,12 @@
 module SakurraForm
   module Helper
+    MAPFILE = 'state/mapping.json'
+
+    def load_map
+      return {} unless File.exists?(MAPFILE)
+      JSON.parse(File.read(MAPFILE))
+    end
+
     def load_local
       {
         :network => SakurraForm::State::Network.new.local
@@ -7,7 +14,7 @@ module SakurraForm
     end
 
     def update_map
-      if File.exists?('state/mapping.json')
+      if File.exists?(MAPFILE)
       else
         create_map
       end
@@ -20,6 +27,9 @@ module SakurraForm
         'network' => hashed_names(resources[:network].map {|a| a['name']})
       }
       puts JSON.pretty_generate(mapping)
+      File.open(MAPFILE, 'w') do |f|
+        f.puts(JSON.pretty_generate(mapping))
+      end
     end
 
     def hashed_names(names = [])

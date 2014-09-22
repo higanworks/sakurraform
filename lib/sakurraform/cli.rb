@@ -1,4 +1,5 @@
 require 'sakurraform/cli/version'
+require 'sakurraform/cli/init'
 require 'sakurraform/cli/plan'
 require 'sakurraform/cli/status'
 
