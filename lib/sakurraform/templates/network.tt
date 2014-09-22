@@ -1,4 +1,4 @@
 ---
-name: sakurarouter
+- name: defaultrouter
   networkmasklen: 28
 

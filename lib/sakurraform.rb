@@ -1,5 +1,4 @@
 require "sakurraform/version"
+require "sakurraform/states"
+require "sakurraform/helper"
 
-module SakkuraForm
-  # Your code goes here...
-end

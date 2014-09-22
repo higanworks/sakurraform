@@ -1,6 +1,6 @@
 require 'sakurraform/cli/version'
 require 'sakurraform/cli/plan'
-
+require 'sakurraform/cli/status'
 
 module SakurraForm
   class CLI < Thor
