@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+require "thor"
+
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'sakurraform'
+require 'sakurraform/cli'
+
+class MyCLI < Thor
+  desc "plan NAME", "create plan NAME"
+  def plan(name)
+    puts "Pending!! #{name}"
+  end
+
+  desc "apply NAME", "apply plan NAME"
+  def apply(name)
+    puts "Pending!! #{name}"
+  end
+
+  desc "show NAME", "show state NAME"
+  def show(name)
+    puts "Pending!! #{name}"
+  end
+
+  desc "refresh NAME", "refresh state NAME"
+  def refresh(name)
+    puts "Pending!! #{name}"
+  end
+
+  desc "version", "show version"
+  def version
+    say SakurraForm::VERSION
+  end
+end
+
+SakurraForm::CLI.start(ARGV)
