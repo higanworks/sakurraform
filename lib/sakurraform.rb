@@ -5,6 +5,7 @@ require 'chamber'
 require 'fog'
 require "sakurraform/version"
 require "sakurraform/helper"
-require "sakurraform/run_state"
-require "sakurraform/states"
+require "sakurraform/load_plan"
+require "sakurraform/collections"
+require "sakurraform/resources"
 

@@ -1,43 +1,28 @@
 module SakurraForm
   module Helper
-    MAPFILE = 'state/mapping.json'
 
-    def load_map
-      return {} unless File.exists?(MAPFILE)
-      JSON.parse(File.read(MAPFILE))
+    def resolve_id_by_name(type, name)
+      files = Dir.glob("state/#{type}/#{name}-????????-????-????-????-????????????.yml")
+      return nil if files.empty?
+      raise "Abort: Same name detected." if files.size > 1
+      File.basename(files.first, '.yml')
     end
 
-    def load_local
-      {
-        :network => SakurraForm::State::Network.new.local
-      }
+    def resolve_sakura_id_by_resource_id(type, resouce_id)
+      state_file = "state/#{type}/#{resouce_id}.yml"
+      return nil unless File.exists?(state_file)
+      resource = YAML.load(File.read(state_file))
+      resource[:id]
     end
 
-    def update_map
-      if File.exists?(MAPFILE)
-      else
-        create_map
-      end
+    def resolve_sakura_id_by_name(type, name)
+      resouce_id = resolve_id_by_name(type, name)
+      return nil unless resouce_id
+      resolve_sakura_id_by_resource_id(type, resouce_id)
     end
 
-    def create_map
-      resources = load_local
-
-      mapping = {
-        'network' => hashed_names(resources[:network].map {|a| a['name']})
-      }
-      puts JSON.pretty_generate(mapping)
-      File.open(MAPFILE, 'w') do |f|
-        f.puts(JSON.pretty_generate(mapping))
-      end
-    end
-
-    def hashed_names(names = [])
-      hash = Hash.new
-      names.map do |name|
-        hash[name] = name_plus_uuid(name)
-      end
-      hash
+    def fog_client(service)
+      # Pending
     end
 
     def name_plus_uuid(name)

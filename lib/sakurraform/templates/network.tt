@@ -1,4 +1,7 @@
 ---
-- name: defaultrouter
-  networkmasklen: 28
+network:
+  - name: defaultrouter
+    networkmasklen: 28
+  - name: defaultrouter2
+    networkmasklen: 28
 

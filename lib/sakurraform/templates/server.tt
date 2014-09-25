@@ -1,0 +1,29 @@
+---
+server:
+  - name: server1
+    serverplan: 2001
+    boot: true
+    sshkey: <% ENV['SAKURA_SSH_KEYID'] %>
+    volume:
+      diskplan: 4
+      sourcearchive: 112500463685
+    switch: network[defaultrouter]
+    meta:
+      chef_environment: null
+      chef_role:
+        - aaa
+        - bbb
+  - name: server2
+    serverplan: 2001
+    boot: true
+    sshkey: <% ENV['SAKURA_SSH_KEYID'] %>
+    volume:
+      diskplan: 4
+      sourcearchive: 112500463685
+    switch: network[defaultrouter]
+    meta:
+      chef_environment: null
+      chef_role:
+        - aaa
+        - bbb
+
