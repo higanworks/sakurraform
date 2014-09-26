@@ -1,5 +1,7 @@
 # Sakurraform
 
+[WIP]
+
 Manage Infrastructure from Code with Sakura no Cloud
 
 ## Installation
@@ -20,6 +22,29 @@ Or install it yourself as:
 
 ## Usage
 
+```
+$ ./bin/sakkuraform 
+Commands:
+  sakkuraform help [COMMAND]   # Describe available commands or one specific command
+  sakkuraform init             # initiaize .sakuracloud/credentials
+  sakkuraform plan SUBCOMMAND  # 
+  sakkuraform status           # show status
+  sakkuraform version          # show version
+```
+
+### sakurraform init
+
+Create credential file
+
+### sakkuraform plan SUBCOMMAND 
+
+#### sakkuraform plan generate
+
+Create plan template.
+
+#### sakkuraform plan apply
+
+Create resources from yaml.
 
 
 ## Contributing
