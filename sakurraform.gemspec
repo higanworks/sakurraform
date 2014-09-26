@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SakurraForm::VERSION
   spec.authors       = ["sawanoboly"]
   spec.email         = ["sawanoboriyu@higanworks.com"]
-  spec.summary       = %q{Create Infrastructure from Code with Sakura no Cloud}
-  spec.description   = %q{Create Infrastructure from Code with Sakura no Cloud}
+  spec.summary       = %q{Manage Infrastructure from Code with Sakura no Cloud}
+  spec.description   = %q{Manage Infrastructure from Code with Sakura no Cloud}
   spec.homepage      = ""
   spec.license       = "MIT"
 

@@ -21,6 +21,18 @@ module SakurraForm
       resolve_sakura_id_by_resource_id(type, resouce_id)
     end
 
+    def resolve_sakura_id_by_combined(c_resource)
+      type, name = split_combined_resource(c_resource)
+      sakura_id = resolve_sakura_id_by_name(type, name)
+      raise "Abort: Depend resource #{c_resource} not created." unless sakura_id
+      sakura_id
+    end
+
+    def split_combined_resource(c_resource)
+      type, name = c_resource.split('[').first, c_resource.match(/\[([\w]+)\]/)[1]
+      [ type, name ]
+    end
+
     def fog_client(service)
       # Pending
     end

@@ -1,6 +1,6 @@
 # Sakurraform
 
-TODO: Write a gem description
+Manage Infrastructure from Code with Sakura no Cloud
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
 
 ## Contributing
 
@@ -29,3 +29,10 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## LICENSE and Author
+
+LICENSE: MIT
+
+Author: SAWANOBORI Yukihiko(sawanoboriyu@higanworks.com)
+

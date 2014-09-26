@@ -7,8 +7,8 @@ module SakurraForm
     end
 
     def collection_resources(enable_remote = false)
-      configration = SakurraForm::Plans[@type.to_sym]
-      configration.each do |conf|
+      configuration = SakurraForm::Plans[@type.to_sym]
+      configuration.each do |conf|
         @resources << SakurraForm::Resource.const_get(type.capitalize).new(conf[:name], enable_remote)
       end
     end

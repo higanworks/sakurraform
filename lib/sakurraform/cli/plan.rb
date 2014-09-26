@@ -19,35 +19,41 @@ module SakurraForm
     desc 'apply', ''
     def apply
       ## Prepare Network
-      col_network = SakurraForm::Collection.new('network')
-      col_network.collection_resources
+      col_networks = SakurraForm::Collection.new('network')
+      col_networks.collection_resources
 
       network = Fog::Network[:sakuracloud]
-      col_network.resources.each do |net|
+      col_networks.resources.each do |net|
         unless net.resource_id
           net.resource_id = name_plus_uuid(net.name)
-          options = net.configration.first.merge({'name' => net.resource_id})
+          options = net.configuration.first.merge({'name' => net.resource_id})
           say("Create new network #{net.name}")
           router = network.routers.create(options)
           switch = network.switches.find {|s| s.id == router.id}
           create_file "state/network/#{net.resource_id}.yml", switch.all_attributes.to_yaml
+          col_networks.collection_resources
         else
           say("#{net.name} already available as #{net.resource_id}")
         end
       end
 
+      col_servers = SakurraForm::Collection.new('server')
+      col_servers.collection_resources
+      compute = Fog::Compute[:sakuracloud]
 
-
-      return
-      network = Fog::Network[:sakuracloud]
-      run_state.mapping['network'].each_pair do |name, id|
-        if File.exists?("state/network/#{id}.yml")
-          say("#{id} already available")
-          next
+      col_servers.resources.each do |sv|
+        unless sv.resource_id
+          sv.resource_id = name_plus_uuid(sv.name)
+          options = sv.configuration.first.merge(
+            {"switch" => resolve_sakura_id_by_combined(sv.configuration.first["switch"])}
+          )
+          say("Create new server #{sv.name}")
+          server = compute.servers.create(options)
+          create_file "state/server/#{sv.resource_id}.yml", server.all_attributes.to_yaml
+          col_servers.collection_resources
+        else
+          say("#{sv.name} already available as #{sv.resource_id}")
         end
-        router = network.routers.create(:name => id, :networkmasklen => 28)
-        switch = network.switches.find {|s| s.id == router.id}
-        create_file "state/network/#{id}.yml", switch.all_attributes.to_yaml
       end
     end
   end
