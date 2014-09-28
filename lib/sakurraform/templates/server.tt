@@ -2,7 +2,7 @@
 server:
   - name: server1
     serverplan: 2001
-    sshkey: <% ENV['SAKURA_SSH_KEYID'] %>
+    sshkey: <%= ENV['SAKURA_SSH_KEYID'] %>
     volume:
       diskplan: 4
       sourcearchive: 112500463685
@@ -15,7 +15,7 @@ server:
         - bbb
   - name: server2
     serverplan: 2001
-    sshkey: <% ENV['SAKURA_SSH_KEYID'] %>
+    sshkey: <%= ENV['SAKURA_SSH_KEYID'] %>
     volume:
       diskplan: 4
       sourcearchive: 112500463685

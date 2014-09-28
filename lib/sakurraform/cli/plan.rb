@@ -31,11 +31,11 @@ module SakurraForm
           router = network.routers.create(options)
           switch = network.switches.find {|s| s.id == router.id}
           create_file "state/network/#{net.resource_id}.yml", switch.all_attributes.to_yaml
-          col_networks.collection_resources
         else
           say("#{net.name} already available as #{net.resource_id}")
         end
       end
+      col_networks.collection_resources
 
       col_servers = SakurraForm::Collection.new('server')
       col_servers.collection_resources
@@ -68,7 +68,6 @@ module SakurraForm
           volume.associate_ip_to_disk(disk_id, subnet)
           server.boot
           create_file "state/server/#{sv.resource_id}.yml", server.all_attributes.to_yaml
-          col_servers.collection_resources
         else
           say("#{sv.name} already available as #{sv.resource_id}")
         end
