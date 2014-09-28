@@ -35,7 +35,9 @@ module SakurraForm
           say("#{net.name} already available as #{net.resource_id}")
         end
       end
-      col_networks.collection_resources
+
+      col_networks = SakurraForm::Collection.new('network')
+      col_networks.collection_resources(true)
 
       col_servers = SakurraForm::Collection.new('server')
       col_servers.collection_resources
