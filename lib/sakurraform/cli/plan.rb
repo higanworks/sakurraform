@@ -39,7 +39,6 @@ module SakurraForm
 
       col_servers = SakurraForm::Collection.new('server')
       col_servers.collection_resources
-      pp col_servers
       compute = Fog::Compute[:sakuracloud]
       volume  = Fog::Volume[:sakuracloud]
 
@@ -48,7 +47,10 @@ module SakurraForm
           sv.resource_id = name_plus_uuid(sv.name)
           switch_id = resolve_sakura_id_by_combined(sv.configuration.first["switch"])
           options = sv.configuration.first.merge(
-            {"switch" => switch_id}
+            {
+              "name"   => sv.resource_id,
+              "switch" => switch_id
+            }
           )
           say("Create new server #{sv.name}")
           server = compute.servers.create(options)
@@ -67,7 +69,6 @@ module SakurraForm
           server.boot
           create_file "state/server/#{sv.resource_id}.yml", server.all_attributes.to_yaml
           col_servers.collection_resources
-          pp col_servers
         else
           say("#{sv.name} already available as #{sv.resource_id}")
         end
