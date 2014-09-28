@@ -8,7 +8,7 @@ server:
       sourcearchive: 112500463685
     switch: network[defaultrouter]
     meta:
-      network_id: 1
+      network_offset: 1
       chef_environment: null
       chef_role:
         - aaa
@@ -21,7 +21,7 @@ server:
       sourcearchive: 112500463685
     switch: network[defaultrouter]
     meta:
-      network_id: 2
+      network_offset: 2
       chef_environment: null
       chef_role:
         - aaa

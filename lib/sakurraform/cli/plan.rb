@@ -39,18 +39,35 @@ module SakurraForm
 
       col_servers = SakurraForm::Collection.new('server')
       col_servers.collection_resources
+      pp col_servers
       compute = Fog::Compute[:sakuracloud]
+      volume  = Fog::Volume[:sakuracloud]
 
       col_servers.resources.each do |sv|
         unless sv.resource_id
           sv.resource_id = name_plus_uuid(sv.name)
+          switch_id = resolve_sakura_id_by_combined(sv.configuration.first["switch"])
           options = sv.configuration.first.merge(
-            {"switch" => resolve_sakura_id_by_combined(sv.configuration.first["switch"])}
+            {"switch" => switch_id}
           )
           say("Create new server #{sv.name}")
           server = compute.servers.create(options)
+
+          sv_network = (col_networks.resources.find {|n| n.cached_state[:id] == switch_id}).cached_state[:subnets].first
+          sv_ipaddress = get_offset_address(sv_network["DefaultRoute"], sv.configuration.first["meta"]["network_offset"])
+          subnet ={
+            :ipaddress => sv_ipaddress,
+            :networkmasklen => sv_network["NetworkMaskLen"],
+            :defaultroute => sv_network["DefaultRoute"]
+          }
+
+          disk_id = server.disks.first['ID']
+          say("Associate #{sv_ipaddress} to #{sv.name}")
+          volume.associate_ip_to_disk(disk_id, subnet)
+          server.boot
           create_file "state/server/#{sv.resource_id}.yml", server.all_attributes.to_yaml
           col_servers.collection_resources
+          pp col_servers
         else
           say("#{sv.name} already available as #{sv.resource_id}")
         end

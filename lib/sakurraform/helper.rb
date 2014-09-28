@@ -40,5 +40,10 @@ module SakurraForm
     def name_plus_uuid(name)
       [name, UUID.generate].join('-')
     end
+
+    def get_offset_address(ip, offset)
+      dec_ip = IPAddress(ip).to_i + offset
+      IPAddr.new(dec_ip, Socket::AF_INET).to_s
+    end
   end
 end
