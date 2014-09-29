@@ -1,5 +1,10 @@
 # CHANGELOG of sakurraform
 
+## v0.0.3
+
+- Change network_offset default. 3 or upper.
+- update disk image template ubuntu 12 to 14
+
 ## v0.0.2
 
 - Fix: Change cli name to sakurraform
