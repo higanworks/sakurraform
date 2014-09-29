@@ -1,8 +1,14 @@
 # Sakurraform
 
-[WIP]
+[![Gem Version](https://badge.fury.io/rb/sakurraform.svg)](http://badge.fury.io/rb/sakurraform)
 
-Manage Infrastructure from Code with Sakura no Cloud
+Manage Infrastructure from Code with Sakura no Cloud and Base Storage.
+
+## TODO
+
+- delete resources.
+- update resources if detect diff.
+
 
 ## Installation
 
@@ -47,8 +53,45 @@ Create plan template.
 
 #### sakurraform plan apply
 
-Create resources from yaml.
+Create resources from yaml and save state to file.
 
+```
+## Example 2 networks and 2 servers.
+
+$ ./bin/sakurraform plan apply
+Create new network defaultrouter
+[fog][WARNING] Create Router with public subnet
+[fog][WARNING] Waiting available new router...
+......      create  state/network/defaultrouter-dbfd50c0-2a2c-0132-62c2-38e8563c85ec.yml
+Create new network defaultrouter2
+[fog][WARNING] Create Router with public subnet
+[fog][WARNING] Waiting available new router...
+......      create  state/network/defaultrouter2-e5ea21c0-2a2c-0132-62c2-38e8563c85ec.yml
+Create new server server1
+[fog][WARNING] Create Server
+[fog][WARNING] Create Volume
+[fog][WARNING] Waiting disk until available
+.[fog][WARNING] Modifing disk
+Associate 133.242.242.242 to server1
+      create  state/server/server1-efc00f30-2a2c-0132-62c2-38e8563c85ec.yml
+Create new server server2
+[fog][WARNING] Create Server
+[fog][WARNING] Create Volume
+[fog][WARNING] Waiting disk until available
+.[fog][WARNING] Modifing disk
+Associate 133.242.242.243 to server2
+      create  state/server/server2-21a3a320-2a2d-0132-62c2-38e8563c85ec.yml
+```
+
+create once.
+
+```
+$ ./bin/sakurraform plan apply
+defaultrouter already available as defaultrouter-dbfd50c0-2a2c-0132-62c2-38e8563c85ec
+defaultrouter2 already available as defaultrouter2-e5ea21c0-2a2c-0132-62c2-38e8563c85ec
+server1 already available as server1-efc00f30-2a2c-0132-62c2-38e8563c85ec
+server2 already available as server2-21a3a320-2a2d-0132-62c2-38e8563c85ec
+```
 
 #### sakurraform status
 
