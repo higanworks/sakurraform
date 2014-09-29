@@ -23,36 +23,39 @@ Or install it yourself as:
 ## Usage
 
 ```
-$ ./bin/sakkuraform 
+$ ./bin/sakurraform 
 Commands:
-  sakkuraform help [COMMAND]   # Describe available commands or one specific command
-  sakkuraform init             # initiaize .sakuracloud/credentials
-  sakkuraform plan SUBCOMMAND  # 
-  sakkuraform status           # show status
-  sakkuraform version          # show version
+  sakurraform bs SUBCOMMAND    # Manage Sakura no Base Storage
+  sakurraform help [COMMAND]   # Describe available commands or one specific command
+  sakurraform init             # initiaize .sakuracloud/credentials
+  sakurraform map              # open sakura cloud map!
+  sakurraform plan SUBCOMMAND  # Manage plan
+  sakurraform status           # show status
+  sakurraform version          # show version
+
 ```
 
 ### sakurraform init
 
 Create credential file
 
-### sakkuraform plan SUBCOMMAND 
+### sakurraform plan SUBCOMMAND 
 
-#### sakkuraform plan generate
+#### sakurraform plan generate
 
 Create plan template.
 
-#### sakkuraform plan apply
+#### sakurraform plan apply
 
 Create resources from yaml.
 
 
-#### sakkuraform status
+#### sakurraform status
 
 Show status of resources.
 
 ```
-$ ./bin/sakkuraform status
+$ ./bin/sakurraform status
   Nework resources
   +----------------+-----------------------------------------------------+--------------+--------------------+-----------------+
   | name           | sakurraform_name                                    | sakura_id    | subnet             | gateway         |
@@ -72,6 +75,33 @@ $ ./bin/sakkuraform status
   +---------+----------------------------------------------+--------------+-----------------+--------+---------------------------+
 
 ```
+
+### sakurraform map
+
+open map page by bwowser...
+
+
+### sakurraform bs SUBCOMMAND 
+
+#### sakurraform bs create
+
+Create bucket(..just open browser)
+
+#### sakurraform bs ls
+
+list object entries.
+
+```
+$ ./bin/sakurraform bs ls
+  +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
+  | key      | content_length | content_type        | last_modified             | public_url                                            |
+  +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
+  | hogehoge | 0              | binary/octet-stream | 2014-09-30 02:14:27 +0900 | http://test-hogehgoe.b.storage.sakura.ad.jp/hogehoge |
+  +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
+  | mogemoge | 0              | binary/octet-stream | 2014-09-30 02:14:28 +0900 | http://test-hogehoge.b.storage.sakura.ad.jp/mogemoge |
+  +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
+```
+
 
 ## Contributing
 
