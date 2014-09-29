@@ -45,5 +45,38 @@ module SakurraForm
       dec_ip = IPAddress(ip).to_i + offset
       IPAddr.new(dec_ip, Socket::AF_INET).to_s
     end
+
+    def build_state_network(col_network)
+      table_data = []
+      col_network.resources.each do |resource|
+        table_datum = {}
+#        pp resource
+        table_datum[:name] = resource.name
+        table_datum[:sakura_name] = resource.resource_id ? resource.resource_id : 'not created'
+        table_datum[:sakura_id] = resource.remote_state ? resource.remote_state[:id] : 'not created'
+        table_datum[:subnet] = resource.remote_state ? resource.remote_state[:subnets].first['NetworkAddress'] + '/' + resource.remote_state[:subnets].first['NetworkMaskLen'].to_s  : 'not created'
+        table_datum[:gateway] = resource.remote_state ? resource.remote_state[:subnets].first['DefaultRoute'] : 'not created'
+
+        table_data << table_datum
+      end
+      table_data
+    end
+
+    def build_state_server(col_server)
+      table_data = []
+      col_server.resources.each do |resource|
+        table_datum = {}
+#        pp resource
+        table_datum[:name] = resource.name
+        table_datum[:sakura_name] = resource.resource_id ? resource.resource_id : 'not created'
+        table_datum[:sakura_id] = resource.remote_state ? resource.remote_state[:id] : 'not created'
+        table_datum[:status] = resource.remote_state ? resource.remote_state[:instance]['Status'] : 'not created'
+        table_datum[:last_state_changed] = resource.remote_state ? resource.remote_state[:instance]['StatusChangedAt'] : 'not created'
+        table_datum[:ipaddress] = resource.remote_state ? resource.remote_state[:interfaces].first['UserIPAddress'] : 'not created'
+
+        table_data << table_datum
+      end
+      table_data
+    end
   end
 end

@@ -1,6 +1,7 @@
 module SakurraForm
   class CLI < Thor
     include Thor::Actions
+    include SakurraForm::Helper
 
     def self.source_root
       File.expand_path("../../", __FILE__)
@@ -8,12 +9,19 @@ module SakurraForm
 
     desc 'status', "show status"
     def status
-      ## Prepare Network
+      ## Showdown Network
       col_network = SakurraForm::Collection.new('network')
       col_network.collection_resources(true)
-      col_network.resources.each do |resouce|
-        say(pp resouce)
-      end
+      Formatador.display_line('[green]Nework resources[/]')
+      Formatador.display_table(build_state_network(col_network), [:name, :sakura_name, :sakura_id, :subnet, :gateway])
+      say()
+
+      ## Showdown Server
+      col_server = SakurraForm::Collection.new('server')
+      col_server.collection_resources(true)
+      Formatador.display_line('[green]Server resources[/]')
+      Formatador.display_table(build_state_server(col_server), [:name, :sakura_name, :sakura_id, :ipaddress, :status, :last_state_changed])
     end
+
   end
 end

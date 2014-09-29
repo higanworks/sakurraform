@@ -3,6 +3,7 @@ require 'pp'
 require 'json'
 require 'chamber'
 require 'fog'
+require 'formatador'
 require 'ipaddress'
 require "sakurraform/version"
 require "sakurraform/helper"
