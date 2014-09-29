@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "thor"
   spec.add_dependency "uuid"
+  spec.add_dependency "aws-sdk"
   spec.add_dependency "chamber"
   spec.add_dependency "fog-sakuracloud", "~> 0.1.0"
 

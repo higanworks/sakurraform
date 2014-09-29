@@ -7,7 +7,7 @@ module SakurraForm
       File.expand_path("../../", __FILE__)
     end
 
-    desc 'generate', ''
+    desc 'generate', 'Generate template'
     def generate
       empty_directory('state')
       empty_directory('state/network')
@@ -16,7 +16,7 @@ module SakurraForm
       copy_file('templates/server.tt', "plan/server.yml")
     end
 
-    desc 'apply', ''
+    desc 'apply', 'Apply plan'
     def apply
       ## Prepare Network
       col_networks = SakurraForm::Collection.new('network')
