@@ -43,7 +43,17 @@ Commands:
 
 ### sakurraform init
 
-Create credential file
+Create credential file.
+
+```
+$ ./bin/sakurraform init
+       exist  .sakuracloud
+Sakuracloud_api_token(required) ?  your_api_token
+Sakuracloud_api_token_secret(required) ?  your_api_secret
+Sakura Base Storage buket name(optional) ?  mybucket
+Sakura Base Storage token(optional) ?  mytoken
+      create  .sakuracloud/credentials
+```
 
 ### sakurraform plan SUBCOMMAND 
 
