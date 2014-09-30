@@ -78,5 +78,15 @@ module SakurraForm
       end
       table_data
     end
+
+    def init_s3
+      AWS::S3.new(
+        :access_key_id => Fog.credentials[:sakura_base_storage_bucket],
+        :secret_access_key => Fog.credentials[:sakura_base_storage_token] ,
+        :s3_endpoint => 'b.storage.sakura.ad.jp',
+        :use_ssl => false
+      )
+    end
+
   end
 end

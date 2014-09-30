@@ -15,12 +15,7 @@ module SakurraForm
 
     desc 'ls', 'list object entries'
     def ls
-      s3 = AWS::S3.new(
-        :access_key_id => Fog.credentials[:sakura_base_storage_bucket],
-        :secret_access_key => Fog.credentials[:sakura_base_storage_token] ,
-        :s3_endpoint => 'b.storage.sakura.ad.jp',
-        :use_ssl => false
-      )
+      s3 = init_s3
 
       bucket = s3.buckets[Fog.credentials[:sakura_base_storage_bucket]]
       table = bucket.objects.entries.map do |ent|
@@ -33,6 +28,29 @@ module SakurraForm
         }
       end
       Formatador.display_table(table, [:key, :content_length, :content_type, :last_modified, :public_url])
+    end
+
+    desc 'cat PATH', 'cat object entry'
+    def cat(path)
+      s3 = init_s3
+
+      bucket = s3.buckets[Fog.credentials[:sakura_base_storage_bucket]]
+      obj = bucket.objects.find {|a| a.key == path }
+      say(obj.read) if obj
+    end
+
+    desc 'delete PATH', 'delete object entry'
+    def delete(path)
+      s3 = init_s3
+
+      bucket = s3.buckets[Fog.credentials[:sakura_base_storage_bucket]]
+      obj = bucket.objects.find {|a| a.key == path }
+      if obj
+        say("deleting #{obj.key}")
+        obj.delete
+      else
+        say("Object #{path} Not found.")
+      end
     end
   end
 end

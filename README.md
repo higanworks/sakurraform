@@ -14,17 +14,17 @@ Manage Infrastructure from Code with Sakura no Cloud and Base Storage.
 
 Add this line to your application's Gemfile:
 
+> Notice: sakurraform depends fog v1.23.0 or newer.
+> This version doesn't release yet.
+
 ```ruby
+gem 'fog', git: 'https://github.com/fog/fog.git', ref: 'master'
 gem 'sakurraform'
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install sakurraform
 
 ## Usage
 
@@ -56,6 +56,14 @@ Sakura Base Storage token(optional) ?  mytoken
 ```
 
 ### sakurraform plan SUBCOMMAND 
+
+```
+$ ./bin/sakurraform plan
+Commands:
+  sakurraform plan apply           # Apply plan
+  sakurraform plan generate        # Generate template
+  sakurraform plan help [COMMAND]  # Describe subcommands or one specific subcommand
+```
 
 #### sakurraform plan generate
 
@@ -136,6 +144,17 @@ open map page by bwowser...
 
 ### sakurraform bs SUBCOMMAND 
 
+
+```
+$ ./bin/sakurraform bs
+Commands:
+  sakurraform bs cat PATH        # cat object entry
+  sakurraform bs create          # Create bucket(..just open browser)
+  sakurraform bs delete PATH     # delete object entry
+  sakurraform bs help [COMMAND]  # Describe subcommands or one specific subcommand
+  sakurraform bs ls              # list object entries
+```
+
 #### sakurraform bs create
 
 Create bucket(..just open browser)
@@ -155,6 +174,19 @@ $ ./bin/sakurraform bs ls
   +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
 ```
 
+#### sakurraform bs cat
+
+```
+$ ./bin/sakurraform bs cat 20140930_debug.out_0
+{"hoge":"mogemoge","piyo":"piyo"}
+```
+
+#### sakurraform bs delete
+
+```
+$ ./bin/sakurraform bs delete 20140930_debug.out_0
+deleting 20140930_debug.out_0
+```
 
 ## Contributing
 

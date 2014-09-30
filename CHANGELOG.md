@@ -1,5 +1,10 @@
 # CHANGELOG of sakurraform
 
+## v0.0.4
+
+- cat object from bs
+- delete object from bs
+
 ## v0.0.3
 
 - Change network_offset default. 3 or upper.
