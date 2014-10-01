@@ -1,5 +1,9 @@
 # CHANGELOG of sakurraform
 
+## v0.0.5
+
+- Sync cached_state
+
 ## v0.0.4
 
 - cat object from bs
