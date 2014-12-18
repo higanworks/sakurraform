@@ -15,11 +15,8 @@ Manage Infrastructure from Code with Sakura no Cloud and Base Storage.
 
 Add this line to your application's Gemfile:
 
-> Notice: sakurraform depends fog v1.23.0 or newer.
-> This version doesn't release yet.
-
 ```ruby
-gem 'fog', git: 'https://github.com/fog/fog.git', ref: 'master'
+gem 'fog'
 gem 'sakurraform'
 ```
 
