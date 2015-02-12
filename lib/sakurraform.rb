@@ -2,7 +2,7 @@ require 'uuid'
 require 'pp'
 require 'json'
 require 'chamber'
-require 'fog'
+require 'fog/sakuracloud'
 require 'formatador'
 require 'ipaddress'
 require "sakurraform/version"

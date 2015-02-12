@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
+gem 'fog-sakuracloud', path: '../../fog/fog-sakuracloud/'
 
-# Specify your gem's dependencies in sakurraform.gemspec
-gem 'fog', git: 'https://github.com/fog/fog.git', ref: 'master'
 gemspec
