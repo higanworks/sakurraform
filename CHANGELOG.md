@@ -1,5 +1,13 @@
 # CHANGELOG of sakurraform
 
+## v0.1.1
+
+- update sourcearchive id. HT: @moongift
+
+## v0.1.0
+
+- set fog-sakuracloud version to ~> 1.0.0
+
 ## v0.0.5
 
 - Sync cached_state

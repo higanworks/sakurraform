@@ -5,7 +5,7 @@ server:
     sshkey: <%= ENV['SAKURA_SSH_KEYID'] %>
     volume:
       diskplan: 4
-      sourcearchive: 112600321618
+      sourcearchive: 112500463685
     switch: network[defaultrouter]
     meta:
       network_offset: 3
@@ -18,7 +18,7 @@ server:
     sshkey: <%= ENV['SAKURA_SSH_KEYID'] %>
     volume:
       diskplan: 4
-      sourcearchive: 112600321618
+      sourcearchive: 112500463685
     switch: network[defaultrouter]
     meta:
       network_offset: 4
