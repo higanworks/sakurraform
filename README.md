@@ -137,7 +137,7 @@ $ ./bin/sakurraform status
 
 ### sakurraform map
 
-open map page by bwowser...
+open map page by browser...
 
 
 ### sakurraform bs SUBCOMMAND 
