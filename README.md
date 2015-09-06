@@ -152,6 +152,7 @@ Commands:
   sakurraform storage delete PATH     # delete object entry
   sakurraform storage help [COMMAND]  # Describe subcommands or one specific subcommand
   sakurraform storage ls              # list object entries
+  sakurraform storage put FILE [KEY]  # put file to key. use filename to key by default.
 ```
 
 #### sakurraform storage create
@@ -171,6 +172,17 @@ $ ./bin/sakurraform storage ls
   +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
   | mogemoge | 0              | binary/octet-stream | 2014-09-30 02:14:28 +0900 | http://test-hogehoge.b.storage.sakura.ad.jp/mogemoge |
   +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
+```
+
+#### sakurraform storage put
+
+```
+$ ./bin/sakurraform storage put install.sh
+File install.sh was put to install.sh.
+
+
+$ ./bin/sakurraform storage put install.sh myobj-key
+File install.sh was put to myobj-key.
 ```
 
 #### sakurraform storage cat
