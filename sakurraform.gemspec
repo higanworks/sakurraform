@@ -20,12 +20,12 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "thor"
   spec.add_dependency "uuid"
-  spec.add_dependency "aws-sdk"
+  spec.add_dependency "aws-sdk", "< 2.0"
   spec.add_dependency "chamber"
   spec.add_dependency "ipaddress"
-  spec.add_dependency "fog-sakuracloud", "~> 1.0.0"
+  spec.add_dependency "fog-sakuracloud"
 
-  spec.add_development_dependency "bundler", "~> 1.7"
+  spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry"
 end

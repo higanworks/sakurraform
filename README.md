@@ -3,7 +3,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/sakurraform.svg)](http://badge.fury.io/rb/sakurraform)
 
-Manage Infrastructure from Code with Sakura no Cloud and Base Storage.
+Manage Infrastructure from Code with Sakura no Cloud and Object Storage.
 
 ## TODO
 
@@ -29,13 +29,13 @@ And then execute:
 ```
 $ ./bin/sakurraform 
 Commands:
-  sakurraform bs SUBCOMMAND    # Manage Sakura no Base Storage
-  sakurraform help [COMMAND]   # Describe available commands or one specific command
-  sakurraform init             # initiaize .sakuracloud/credentials
-  sakurraform map              # open sakura cloud map!
-  sakurraform plan SUBCOMMAND  # Manage plan
-  sakurraform status           # show status
-  sakurraform version          # show version
+  sakurraform storage SUBCOMMAND  # Manage Sakura no Object Storage
+  sakurraform help [COMMAND]      # Describe available commands or one specific command
+  sakurraform init                # initiaize .sakuracloud/credentials
+  sakurraform map                 # open sakura cloud map!
+  sakurraform plan SUBCOMMAND     # Manage plan
+  sakurraform status              # show status
+  sakurraform version             # show version
 
 ```
 
@@ -140,29 +140,30 @@ $ ./bin/sakurraform status
 open map page by browser...
 
 
-### sakurraform bs SUBCOMMAND 
+### sakurraform storage SUBCOMMAND 
 
+Note: Renamed from bs subcommand since v0.2.0.
 
 ```
-$ ./bin/sakurraform bs
+$ ./bin/sakurraform storage
 Commands:
-  sakurraform bs cat PATH        # cat object entry
-  sakurraform bs create          # Create bucket(..just open browser)
-  sakurraform bs delete PATH     # delete object entry
-  sakurraform bs help [COMMAND]  # Describe subcommands or one specific subcommand
-  sakurraform bs ls              # list object entries
+  sakurraform storage cat PATH        # cat object entry
+  sakurraform storage create          # Create bucket(..just open browser)
+  sakurraform storage delete PATH     # delete object entry
+  sakurraform storage help [COMMAND]  # Describe subcommands or one specific subcommand
+  sakurraform storage ls              # list object entries
 ```
 
-#### sakurraform bs create
+#### sakurraform storage create
 
 Create bucket(..just open browser)
 
-#### sakurraform bs ls
+#### sakurraform storage ls
 
 list object entries.
 
 ```
-$ ./bin/sakurraform bs ls
+$ ./bin/sakurraform storage ls
   +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
   | key      | content_length | content_type        | last_modified             | public_url                                            |
   +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
@@ -172,17 +173,17 @@ $ ./bin/sakurraform bs ls
   +----------+----------------+---------------------+---------------------------+-------------------------------------------------------+
 ```
 
-#### sakurraform bs cat
+#### sakurraform storage cat
 
 ```
-$ ./bin/sakurraform bs cat 20140930_debug.out_0
+$ ./bin/sakurraform storage cat 20140930_debug.out_0
 {"hoge":"mogemoge","piyo":"piyo"}
 ```
 
-#### sakurraform bs delete
+#### sakurraform storage delete
 
 ```
-$ ./bin/sakurraform bs delete 20140930_debug.out_0
+$ ./bin/sakurraform storage delete 20140930_debug.out_0
 deleting 20140930_debug.out_0
 ```
 
