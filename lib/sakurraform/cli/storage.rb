@@ -1,6 +1,6 @@
 require 'aws-sdk'
 module SakurraForm
-  class Bs < Thor
+  class Storage < Thor
     include Thor::Actions
     include SakurraForm::Helper
 
@@ -17,7 +17,7 @@ module SakurraForm
     def ls
       s3 = init_s3
 
-      bucket = s3.buckets[Fog.credentials[:sakura_base_storage_bucket]]
+      bucket = s3.buckets[Fog.credentials[:sakura_object_storage_bucket]]
       table = bucket.objects.entries.map do |ent|
         {
           :key => ent.key,
@@ -34,7 +34,7 @@ module SakurraForm
     def cat(path)
       s3 = init_s3
 
-      bucket = s3.buckets[Fog.credentials[:sakura_base_storage_bucket]]
+      bucket = s3.buckets[Fog.credentials[:sakura_object_storage_bucket]]
       obj = bucket.objects.find {|a| a.key == path }
       say(obj.read) if obj
     end
@@ -43,7 +43,7 @@ module SakurraForm
     def delete(path)
       s3 = init_s3
 
-      bucket = s3.buckets[Fog.credentials[:sakura_base_storage_bucket]]
+      bucket = s3.buckets[Fog.credentials[:sakura_object_storage_bucket]]
       obj = bucket.objects.find {|a| a.key == path }
       if obj
         say("deleting #{obj.key}")

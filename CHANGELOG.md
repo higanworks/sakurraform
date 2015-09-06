@@ -1,5 +1,10 @@
 # CHANGELOG of sakurraform
 
+## v0.2.0
+
+- Rename Base Storage to Object Storage
+- Pin AWS-SDK < 2
+
 ## v0.1.1
 
 - update sourcearchive id. HT: @moongift
