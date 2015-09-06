@@ -39,6 +39,16 @@ module SakurraForm
       say(obj.read) if obj
     end
 
+    desc 'put FILE [KEY]', 'put file to key. use filename to key by default.'
+    def put(file, key = file)
+      s3 = init_s3
+
+      bucket = s3.buckets[Fog.credentials[:sakura_object_storage_bucket]]
+      obj = bucket.objects[key]
+      obj.write(Pathname.new(file))
+      say("File #{file} was put to #{key}.")
+    end
+
     desc 'delete PATH', 'delete object entry'
     def delete(path)
       s3 = init_s3
