@@ -1,5 +1,9 @@
 # CHANGELOG of sakurraform
 
+## v0.2.1
+
+- Add Json format for status.
+
 ## v0.2.0
 
 - Rename Base Storage to Object Storage
