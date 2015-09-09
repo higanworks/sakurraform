@@ -23,6 +23,12 @@ module SakurraForm
       def collect_remote_state
         # Override It
       end
+
+      def flush_cached_state(type)
+        state_path = "state/#{type}/#{@resource_id}.yml"
+        return true unless File.exists?(state_path)
+        File.delete(state_path)
+      end
     end
   end
 end

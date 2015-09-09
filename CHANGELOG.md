@@ -1,5 +1,10 @@
 # CHANGELOG of sakurraform
 
+## v0.2.2
+
+- Fix: build status crashes if other resources exists.
+- Feature: create plan destroy.
+
 ## v0.2.1
 
 - Add Json format for status.
