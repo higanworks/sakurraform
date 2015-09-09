@@ -59,6 +59,7 @@ Sakura Base Storage token(optional) ?  mytoken
 $ ./bin/sakurraform plan
 Commands:
   sakurraform plan apply           # Apply plan
+  sakurraform plan destroy         # Destroy All Resources
   sakurraform plan generate        # Generate template
   sakurraform plan help [COMMAND]  # Describe subcommands or one specific subcommand
 ```
@@ -133,6 +134,52 @@ $ ./bin/sakurraform status
   | server2 | server2-1f9f9b40-295d-0132-62c1-38e8563c85ec | 112600778162 | 133.242.242.195 | up     | 2014-09-29T01:49:22+09:00 |
   +---------+----------------------------------------------+--------------+-----------------+--------+---------------------------+
 
+```
+
+#### sakurraform plan destroy
+
+Delete all resources of plan and remove state files.
+
+```
+$ sakurraform plan destroy
+  Nework resources
+  +---------------+----------------------------------------------------+--------------+--------------------+-----------------+
+  | name          | sakurraform_name                                   | sakura_id    | subnets            | gateway         |
+  +---------------+----------------------------------------------------+--------------+--------------------+-----------------+
+  | defaultrouter | defaultrouter-34b2ae10-38ed-0133-a63c-38e8563c85ec | 112700768733 | 153.120.161.240/28 | 153.120.161.241 |
+  +---------------+----------------------------------------------------+--------------+--------------------+-----------------+
+
+  Server resources
+  +----------+-----------------------------------------------+--------------+-----------------+--------+---------------------------+
+  | name     | sakurraform_name                              | sakura_id    | ipaddress       | status | last_state_changed        |
+  +----------+-----------------------------------------------+--------------+-----------------+--------+---------------------------+
+  | master   | master-3e88cfc0-38ed-0133-a63c-38e8563c85ec   | 112700768736 | 153.120.161.244 | up     | 2015-09-09T15:54:35+09:00 |
+  +----------+-----------------------------------------------+--------------+-----------------+--------+---------------------------+
+  | minion-1 | minion-1-8e060590-38ed-0133-a63c-38e8563c85ec | 112700768742 | 153.120.161.245 | up     | 2015-09-09T15:57:53+09:00 |
+  +----------+-----------------------------------------------+--------------+-----------------+--------+---------------------------+
+  | minion-2 | minion-2-0420bc90-38ee-0133-a63c-38e8563c85ec | 112700768750 | 153.120.161.246 | up     | 2015-09-09T16:01:46+09:00 |
+  +----------+-----------------------------------------------+--------------+-----------------+--------+---------------------------+
+  | minion-3 | minion-3-8f796470-38ee-0133-a63c-38e8563c85ec | 112700768763 | 153.120.161.247 | up     | 2015-09-09T16:05:01+09:00 |
+  +----------+-----------------------------------------------+--------------+-----------------+--------+---------------------------+
+This operation removes all resources from Sakura no Cloud.
+Are you sure (Type 'Yes')?  Yes
+Send stop to master-3e88cfc0-38ed-0133-a63c-38e8563c85ec
+Waiting master-3e88cfc0-38ed-0133-a63c-38e8563c85ec until down ... (in 15 sec)
+.
+Deleting master-3e88cfc0-38ed-0133-a63c-38e8563c85ec and Disks...
+Send stop to minion-1-8e060590-38ed-0133-a63c-38e8563c85ec
+Waiting minion-1-8e060590-38ed-0133-a63c-38e8563c85ec until down ... (in 15 sec)
+.
+Deleting minion-1-8e060590-38ed-0133-a63c-38e8563c85ec and Disks...
+Send stop to minion-2-0420bc90-38ee-0133-a63c-38e8563c85ec
+Waiting minion-2-0420bc90-38ee-0133-a63c-38e8563c85ec until down ... (in 15 sec)
+.
+Deleting minion-2-0420bc90-38ee-0133-a63c-38e8563c85ec and Disks...
+Send stop to minion-3-8f796470-38ee-0133-a63c-38e8563c85ec
+Waiting minion-3-8f796470-38ee-0133-a63c-38e8563c85ec until down ... (in 15 sec)
+.
+Deleting minion-3-8f796470-38ee-0133-a63c-38e8563c85ec and Disks...
+Deleting Router defaultrouter-34b2ae10-38ed-0133-a63c-38e8563c85ec ...
 ```
 
 ### sakurraform map

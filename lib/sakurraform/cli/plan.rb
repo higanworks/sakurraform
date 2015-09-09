@@ -75,5 +75,68 @@ module SakurraForm
         end
       end
     end
+
+    desc 'destroy', 'Destroy All Resources'
+    def destroy
+      ## Show resources before destroy.
+      SakurraForm::CLI.new.status
+      say("This operation removes all resources from Sakura no Cloud.")
+      answer = ask("Are you sure (Type 'Yes')? ")
+      exit unless answer == "Yes"
+
+      ## Destroy Servers
+      col_servers = SakurraForm::Collection.new('server')
+      col_servers.collection_resources(true)
+      compute = Fog::Compute[:sakuracloud]
+
+      col_servers.resources.each do |sv|
+        if sv.remote_state
+          # puts sv.remote_state
+          say("Send stop to #{sv.resource_id}")
+          server = compute.servers.get(sv.remote_state[:id])
+          server.stop(true)
+          server.reload
+
+          say("Waiting #{sv.resource_id} until down ... (in 15 sec)")
+          3.times do
+            break if server.instance["Status"] == "down"
+            sleep 5
+            say(".")
+            server.reload
+          end
+
+          say("Deleting #{sv.resource_id} and Disks...")
+          server.delete(
+            true,
+            server.disks.map {|d| d["ID"]}
+          )
+        else
+          say("Server #{sv.name} not found.")
+        end
+        sv.flush_cached_state("server")
+      end
+
+      ## Destroy Network
+      col_networks = SakurraForm::Collection.new('network')
+      col_networks.collection_resources(true)
+      network = Fog::Network[:sakuracloud]
+
+      col_networks.resources.each do |net|
+        if net.remote_state
+          # puts net.remote_state
+          if net.remote_state[:internet].any?
+            say("Deleting Router #{net.resource_id} ...")
+            network.delete_router(net.remote_state[:internet]["ID"])
+          else
+            say("Deleting Switch #{net.resource_id} ...")
+            network.delete_switch(net.remote_state[:id])
+          end
+
+        else
+          say("Router/Switch #{net.name} not found.")
+        end
+        net.flush_cached_state("network")
+      end
+    end
   end
 end
