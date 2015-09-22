@@ -2,7 +2,11 @@
 
 ## Not release or WIP
 
+## v0.4.0
+
+- Support Simple L2 Switch
 - Support add interfaces for server.
+- SUpport connect interfaces to switch.
 
 ## v0.3.0
 
