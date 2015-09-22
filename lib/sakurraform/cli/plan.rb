@@ -75,10 +75,18 @@ module SakurraForm
           disk_id = server.disks.first['ID']
           say("Associate #{sv_ipaddress} to #{sv.name}")
           volume.associate_ip_to_disk(disk_id, subnet)
+
+          ## Regist Interfaces
           if sv.configuration.first["interfaces"]
-            sv.configuration.first.map do |nic|
+            ifs = sv.configuration.first["interfaces"]
+            c_switches = ifs.map { |target_sw| resolve_sakura_id_by_combined(target_sw) }
+            c_switches.map do |t_sw|
+              say("Creating interface connected to #{target_sw}...")
+              new_if = network.interfaces.regist_onto_server(server.id)
+              network.interfaces.connect_to_switch(new_if.id, t_sw)
             end
           end
+
           server.boot
           create_file "state/server/#{sv.resource_id}.yml", server.all_attributes.to_yaml
         else
