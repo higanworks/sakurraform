@@ -135,7 +135,7 @@ module SakurraForm
       col_networks.resources.each do |net|
         if net.remote_state
           # puts net.remote_state
-          if net.remote_state[:internet].any?
+          if net.remote_state[:internet] && net.remote_state[:internet].any?
             say("Deleting Router #{net.resource_id} ...")
             network.delete_router(net.remote_state[:internet]["ID"])
           else
