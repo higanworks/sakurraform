@@ -2,6 +2,5 @@
 network:
   - name: defaultrouter
     networkmasklen: 28
-  - name: defaultrouter2
-    networkmasklen: 28
+  - name: localswitch1
 

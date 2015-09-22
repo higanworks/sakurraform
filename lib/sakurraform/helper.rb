@@ -55,8 +55,10 @@ module SakurraForm
         table_datum[:mode] = resource.mode
         table_datum[:sakurraform_name] = resource.resource_id ? resource.resource_id : 'not created'
         table_datum[:sakura_id] = resource.remote_state ? resource.remote_state[:id] : 'not created'
-        table_datum[:subnets] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['NetworkAddress'] + '/' + resource.remote_state[:subnets].first['NetworkMaskLen'].to_s  : 'not created'
-        table_datum[:gateway] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['DefaultRoute'] : 'not created'
+        if resource.mode == 'router'
+          table_datum[:subnets] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['NetworkAddress'] + '/' + resource.remote_state[:subnets].first['NetworkMaskLen'].to_s  : 'not created'
+          table_datum[:gateway] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['DefaultRoute'] : 'not created'
+        end
 
         table_data << table_datum
       end

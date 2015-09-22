@@ -27,9 +27,16 @@ module SakurraForm
         unless net.resource_id
           net.resource_id = name_plus_uuid(net.name)
           options = net.configuration.first.merge({'name' => net.resource_id})
-          say("Create new network #{net.name}")
-          router = network.routers.create(options)
-          switch = network.switches.find {|s| s.id == router.id}
+          say("Create new #{net.mode} #{net.name}")
+          case net.mode
+          when 'router'
+            router = network.routers.create(options)
+            switch = network.switches.find {|s| s.id == router.id}
+          when 'switch'
+            switch = network.switches.create(options)
+          else
+            raise "Not supported mode #{net.mode}..."
+          end
           create_file "state/network/#{net.resource_id}.yml", switch.all_attributes.to_yaml
         else
           say("#{net.name} already available as #{net.resource_id}")
@@ -68,6 +75,10 @@ module SakurraForm
           disk_id = server.disks.first['ID']
           say("Associate #{sv_ipaddress} to #{sv.name}")
           volume.associate_ip_to_disk(disk_id, subnet)
+          if sv.configuration.first["interfaces"]
+            sv.configuration.first.map do |nic|
+            end
+          end
           server.boot
           create_file "state/server/#{sv.resource_id}.yml", server.all_attributes.to_yaml
         else
