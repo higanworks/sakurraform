@@ -1,5 +1,9 @@
 # CHANGELOG of sakurraform
 
+## Not release or WIP
+
+- Support add interfaces for server.
+
 ## v0.3.0
 
 - Fix: build status crashes if other resources exists.
