@@ -2,6 +2,12 @@
 
 ## Not release or WIP
 
+- Cleanup configuration of resource. (use first by default)
+
+## v0.4.1
+
+- Set hostname from name
+
 ## v0.4.0
 
 - Support Simple L2 Switch

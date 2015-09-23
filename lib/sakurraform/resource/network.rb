@@ -4,7 +4,7 @@ module SakurraForm
       attr_reader :mode
       def initialize(name, enable_remote = false)
         super
-        if @configuration.first.has_key?(:networkmasklen)
+        if @configuration.has_key?(:networkmasklen)
           @mode = 'router'
         else
           @mode = 'switch'
