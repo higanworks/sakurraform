@@ -1,3 +1,3 @@
 module SakurraForm
-  VERSION = "0.4.1.dev"
+  VERSION = "0.4.1"
 end
