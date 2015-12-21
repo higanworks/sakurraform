@@ -52,10 +52,13 @@ module SakurraForm
         table_datum = {}
 #        pp resource
         table_datum[:name] = resource.name
+        table_datum[:mode] = resource.mode
         table_datum[:sakurraform_name] = resource.resource_id ? resource.resource_id : 'not created'
         table_datum[:sakura_id] = resource.remote_state ? resource.remote_state[:id] : 'not created'
-        table_datum[:subnets] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['NetworkAddress'] + '/' + resource.remote_state[:subnets].first['NetworkMaskLen'].to_s  : 'not created'
-        table_datum[:gateway] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['DefaultRoute'] : 'not created'
+        if resource.mode == 'router'
+          table_datum[:subnets] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['NetworkAddress'] + '/' + resource.remote_state[:subnets].first['NetworkMaskLen'].to_s  : 'not created'
+          table_datum[:gateway] = resource.remote_state && resource.remote_state[:subnets] ? resource.remote_state[:subnets].first['DefaultRoute'] : 'not created'
+        end
 
         table_data << table_datum
       end
@@ -66,13 +69,15 @@ module SakurraForm
       table_data = []
       col_server.resources.each do |resource|
         table_datum = {}
-#        pp resource
+        # pp resource
         table_datum[:name] = resource.name
         table_datum[:sakurraform_name] = resource.resource_id ? resource.resource_id : 'not created'
         table_datum[:sakura_id] = resource.remote_state ? resource.remote_state[:id] : 'not created'
         table_datum[:status] = resource.remote_state && resource.remote_state[:instance] ? resource.remote_state[:instance]['Status'] : 'not created'
         table_datum[:last_state_changed] = resource.remote_state && resource.remote_state[:instance] ? resource.remote_state[:instance]['StatusChangedAt'] : 'not created'
         table_datum[:ipaddress] = resource.remote_state && resource.remote_state[:interfaces] ? resource.remote_state[:interfaces].first['UserIPAddress'] : 'not created'
+
+        table_datum[:network] = resource.remote_state && resource.remote_state[:interfaces] ? resource.remote_state[:interfaces].map {|i| i['Switch']['ID'] } : 'not created'
 
         table_data << table_datum
       end

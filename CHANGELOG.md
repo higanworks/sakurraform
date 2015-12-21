@@ -1,10 +1,24 @@
 # CHANGELOG of sakurraform
 
-## v0.4.0
+## Not release or WIP
+
+## v0.5.0
 
 - Misc: Follow upstream change, fog-sakuracloud 1.7.x new Router model.
 - Feature: Region select.
 - Allow empty Server yaml.
+- Cleanup configuration of resource. (use first by default)
+
+## v0.4.1
+
+- Set hostname from name
+
+## v0.4.0
+
+- Support Simple L2 Switch
+- Support add interfaces for server.
+- SUpport connect interfaces to switch.
+>>>>>>> 097b0d37892cd7607f5a734441d40a65861a6789
 
 ## v0.3.0
 

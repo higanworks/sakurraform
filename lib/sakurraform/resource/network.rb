@@ -1,6 +1,16 @@
 module SakurraForm
   class Resource
     class Network < SakurraForm::Resource::Base
+      attr_reader :mode
+      def initialize(name, enable_remote = false)
+        super
+        if @configuration.has_key?(:networkmasklen)
+          @mode = 'router'
+        else
+          @mode = 'switch'
+        end
+      end
+
       def collect_remote_state
         return {} unless @resource_id
         network = Fog::Network[:sakuracloud]

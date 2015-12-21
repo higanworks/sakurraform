@@ -8,6 +8,8 @@ server:
       size_mb: 20480
       sourcearchive: 112500463685
     switch: network[defaultrouter]
+    interfaces:
+      - network[localswitch1]
     meta:
       network_offset: 3
       chef_environment: null
@@ -22,6 +24,8 @@ server:
       size_mb: 20480
       sourcearchive: 112500463685
     switch: network[defaultrouter]
+    interfaces:
+      - network[localswitch1]
     meta:
       network_offset: 4
       chef_environment: null

@@ -19,7 +19,7 @@ module SakurraForm
         output["Networks"] = build_state_network(col_network)
       else
         Formatador.display_line('[green]Nework resources[/]')
-        Formatador.display_table(build_state_network(col_network), [:name, :sakurraform_name, :sakura_id, :subnets, :gateway])
+        Formatador.display_table(build_state_network(col_network), [:name, :mode, :sakurraform_name, :sakura_id, :subnets, :gateway])
         say()
       end
 
@@ -31,7 +31,7 @@ module SakurraForm
         say(JSON.pretty_generate(output))
       else
         Formatador.display_line('[green]Server resources[/]')
-        Formatador.display_table(build_state_server(col_server), [:name, :sakurraform_name, :sakura_id, :ipaddress, :status, :last_state_changed])
+        Formatador.display_table(build_state_server(col_server), [:name, :sakurraform_name, :sakura_id, :ipaddress, :network, :status, :last_state_changed])
       end
       if options[:sync]
         col_server.resources.each do |r|
