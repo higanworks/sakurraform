@@ -1,5 +1,11 @@
 # CHANGELOG of sakurraform
 
+## v0.4.0
+
+- Misc: Follow upstream change, fog-sakuracloud 1.7.x new Router model.
+- Feature: Region select.
+- Allow empty Server yaml.
+
 ## v0.3.0
 
 - Fix: build status crashes if other resources exists.

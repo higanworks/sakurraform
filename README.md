@@ -50,6 +50,8 @@ Sakuracloud_api_token(required) ?  your_api_token
 Sakuracloud_api_token_secret(required) ?  your_api_secret
 Sakura Base Storage buket name(optional) ?  mybucket
 Sakura Base Storage token(optional) ?  mytoken
+Sakura Base Storage token(optional) ?  mytoken
+sakuracloud_api_region(default: is1b) ? tk1a
       create  .sakuracloud/credentials
 ```
 

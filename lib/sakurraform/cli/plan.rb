@@ -29,7 +29,7 @@ module SakurraForm
           options = net.configuration.first.merge({'name' => net.resource_id})
           say("Create new network #{net.name}")
           router = network.routers.create(options)
-          switch = network.switches.find {|s| s.id == router.id}
+          switch = network.switches.find {|s| s.internet['ID'] == router.id}
           create_file "state/network/#{net.resource_id}.yml", switch.all_attributes.to_yaml
         else
           say("#{net.name} already available as #{net.resource_id}")

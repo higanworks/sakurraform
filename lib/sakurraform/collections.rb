@@ -10,7 +10,7 @@ module SakurraForm
       configuration = SakurraForm::Plans[@type.to_sym]
       configuration.each do |conf|
         @resources << SakurraForm::Resource.const_get(type.capitalize).new(conf[:name], enable_remote)
-      end
+      end if configuration
     end
   end
 end

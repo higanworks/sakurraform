@@ -15,6 +15,7 @@ module SakurraForm
       @sakuracloud_api_token_secret = ask("Sakuracloud_api_token_secret(required) ? ")
       @sakura_object_storage_bucket = ask("Sakura Object Storage buket name(optional) ? ")
       @sakura_object_storage_token = ask("Sakura Object Storage token(optional) ? ")
+      @api_region = ask("sakuracloud_api_region(default: is1b) ? ")
       template('templates/credentials.tt', ".sakuracloud/credentials")
     end
   end
